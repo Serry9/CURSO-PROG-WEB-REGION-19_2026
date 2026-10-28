@@ -1,36 +1,304 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-header{
+
+ body {
+    /* Tipografía moderna sans-serif del sistema */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+
+}
+
+/* HEADER */
+header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: aquamarine;
-    padding: 10px 20px;
-}
-header .marca{
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+    align-items: center; /* Centra horizontalmente todo el contenido */
+    text-align: center;
+    background-color: chartreuse; /* Mantienes tu color de fondo */
+    padding: 20px;
+    gap: 15px; /* Espaciado uniforme entre título, logo y nav */
 }
 
+/* Título superior */
+header .titulo-escuela {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+/* Logo */
 header .marca img {
-    width: 120px;
-    margin-right: 10px;
+    width: 200px;
+    height: auto;
+    margin-right: 0; /* Sin margen derecho */
 }
 
-header nav ul{
+/* Menú centrado */
+header nav {
+    width: 100%;
     display: flex;
+    justify-content: center; /* Centra la lista de enlaces */
 }
 
-header nav ul li{
+header nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Separación entre NOSOTROS, HISTORIA, CONTACTO */
     list-style: none;
-    margin-left: 20px;
-    }
+    padding: 0;
+}
 
-header nav ul li a{
+header nav ul li a {
     text-decoration: none;
     color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #0056b3;
+}
+
+/* MAIN / LAYOUT SEGÚN DIBUJO */
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+#portada {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Bloque grande central (1) y columna derecha (1 a 6) */
+    gap: 25px;
+    align-items: start;
+}
+
+/* CARRUSEL CENTRAL (1) */
+.carrusel-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background-color: #000;
+}
+
+.carrusel-slides {
+    display: flex;
+    width: 400%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 25%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /*  #ffffff (blanco)*/
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Botones del carrusel */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Puntos/Indicadores */
+.indicadores {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #fff;
+}
+
+/* COLUMNA DERECHA - CURSOS (1 AL 6) */
+.cursos-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.curso-card {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    border-left: 6px solid transparent;
+}
+
+.curso-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.curso-numero {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-right: 15px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.curso-info h3 {
+    font-size: 1.1rem;
+}
+
+.curso-info p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* ESTILOS Y COLORES POR CICLO */
+/* Ciclo Básico (1°, 2°, 3°) */
+.ciclo-basico {
+    background-color: #e3f2fd;
+    border-left-color: #1e88e5;
+    color: #0d47a1;
+}
+
+.ciclo-basico .curso-numero {
+    color: #1e88e5;
+}
+
+/* Ciclo Superior (4°, 5°, 6°) */
+.ciclo-superior {
+    background-color: #f3e5f5;
+    border-left-color: #8e24aa;
+    color: #4a148c;
+}
+
+.ciclo-superior .curso-numero {
+    color: #8e24aa;
+}
+
+/* RESPONSIVE PARA TABLETS Y CELULARES */
+@media (max-width: 768px) {
+    #portada {
+        grid-template-columns: 1fr;
+    }
+
+    .carrusel-container {
+        height: 300px;
+    }
+}
+
+@media (min-width:768px){
+    header {
+    background-color: chartreuse;    
+    }
+}
+/* --- ESTILOS DEL FOOTER --- */
+html {
+    scroll-behavior: smooth; /* Permite un desplazamiento suave al tocar los enlaces del menú */
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    padding: 40px 20px 10px 20px;
+    margin-top: 40px;
+}
+
+.footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-seccion {
+    flex: 1;
+    min-width: 250px;
+    padding-top: 10px;
+}
+
+.footer-seccion h2 {
+    color: aquamarine;
+    margin-bottom: 15px;
+    border-bottom: 2px solid aquamarine;
+    padding-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+.footer-seccion p {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: #ddd;
+    margin-bottom: 8px;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+    font-size: 0.85rem;
+    color: #aaa;
 }
