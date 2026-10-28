@@ -1,34 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-     <style>
-        body {
-            font-family:'Times New Roman', Times, serif;
-        }
-    </style>
+    <title>EES N° X</title>
+
 </head>
 <body>
+
     <header>
         <div class="marca">
-            <img src="assets/logoescuela.png"
+            <img src="assets/logoescuela.png" alt="Logo Escuela">
             <h1>EES N° X</h1>            
         </div>
         <nav>
             <ul>
                 <li><a href="#Nosotros">NOSOTROS</a></li>
-                <li><a href="#Historia"> HISTORIA</a></li>
+                <li><a href="#Historia">HISTORIA</a></li>
                 <li><a href="#Contacto">CONTACTO</a></li>
             </ul>               
-            
         </nav>
-
     </header>
+
     <main>
         <section id="portada">
+            <!-- 1. CARRUSEL CENTRAL (4 IMÁGENES) -->
+            <div class="carrusel-container">
+                <div class="carrusel-slides" id="slides">
+                    <div class="slide">
+                        <img src="assets/primavera.jpg" alt="Imagen 1">
+                        <div class="slide-caption">Mes de la Primavera</div>
+                    </div>
+                    <div class="slide">
+                        <img src="assets/12octubre.jpg" alt="Imagen 2">
+                        <div class="slide-caption">Día de la Diversidad Cultural</div>
+                    </div>
+                    <div class="slide">
+                        <img src="assets/escuelamarpla.jpg" alt="Imagen 3">
+                        <div class="slide-caption">Nuestra Escuela</div>
+                    </div>
+                    <div class="slide">
+                        <img src="assets/mafaldaescuela.jpg" alt="Imagen 4">
+                        <div class="slide-caption">Defendamos la Escuela Pública</div>
+                    </div>
+                </div>
+
+                <!-- Controles -->
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+
+                <!-- Indicadores -->
+                <div class="indicadores">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: CURSOS (1 AL 6) -->
+            <div class="cursos-columna">
+                <!-- Ciclo Básico -->
+                <div class="curso-card ciclo-basico">
+                    <div class="curso-numero">1</div>
+                    <div class="curso-info">
+                        <h3>1° Año</h3>
+                        <p>Ciclo Básico</p>
+                    </div>
+                </div>
+
+                <div class="curso-card ciclo-basico">
+                    <div class="curso-numero">2</div>
+                    <div class="curso-info">
+                        <h3>2° Año</h3>
+                        <p>Ciclo Básico</p>
+                    </div>
+                </div>
+
+                <div class="curso-card ciclo-basico">
+                    <div class="curso-numero">3</div>
+                    <div class="curso-info">
+                        <h3>3° Año</h3>
+                        <p>Ciclo Básico</p>
+                    </div>
+                </div>
+
+                <!-- Ciclo Superior -->
+                <div class="curso-card ciclo-superior">
+                    <div class="curso-numero">4</div>
+                    <div class="curso-info">
+                        <h3>4° Año</h3>
+                        <p>Ciclo Superior</p>
+                    </div>
+                </div>
+
+                <div class="curso-card ciclo-superior">
+                    <div class="curso-numero">5</div>
+                    <div class="curso-info">
+                        <h3>5° Año</h3>
+                        <p>Ciclo Superior</p>
+                    </div>
+                </div>
+
+                <div class="curso-card ciclo-superior">
+                    <div class="curso-numero">6</div>
+                    <div class="curso-info">
+                        <h3>6° Año</h3>
+                        <p>Ciclo Superior</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+  <footer>
+    <div class="footer-contenido">
+        <!-- Sección Nosotros -->
+        <section id="Nosotros" class="footer-seccion">
+            <h2>Nosotros</h2>
+            <p>Somos la Escuela de Educación Secundaria N° X. Nuestro compromiso es brindar una educación integral, inclusiva y de calidad para preparar a nuestros estudiantes para el futuro.</p>
+        </section>
+
+        <!-- Sección Historia -->
+        <section id="Historia" class="footer-seccion">
+            <h2>Historia</h2>
+            <p>Fundada en el año 2026, nuestra institución ha acompañado a generaciones de estudiantes a lo largo de los años, consolidándose como un pilar fundamental de nuestra comunidad educativa.</p>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="Contacto" class="footer-seccion">
+            <h2>Contacto</h2>
+            <p><strong>Dirección:</strong> Calle Mar del Plata 123, GRAL. PUEYRREDÓN</p>
+            <p><strong>Teléfono:</strong> (0223) 4444-5555</p>
+            <p><strong>Email:</strong> contacto@eesnx.edu.ar</p>
+        </section>
+    </div>
+
+    <div class="footer-copy">
+        <p>&copy; 2026 EES N° X. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <!-- JAVASCRIPT DEL CARRUSEL -->
+    <script>
+        let currentIndex = 0;
+        const slides = document.getElementById('slides');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 4;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentIndex = 0;
+            else if (index < 0) currentIndex = totalSlides - 1;
+            else currentIndex = index;
+
+            slides.style.transform = `translateX(-${currentIndex * 25}%)`;
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        function moveSlide(step) {
+            showSlide(currentIndex + step);
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-avance del carrusel cada 5 segundos
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+    </script>
+</body>
+</html>
 
         </section>
     </main>
