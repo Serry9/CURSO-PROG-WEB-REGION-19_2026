@@ -91,20 +91,15 @@ main {
 
 .carrusel-slides {
     display: flex;
-    width: 400%;
+    width: 400%; /* Para 4 imágenes */
     height: 100%;
-    object-fit: contain;
     transition: transform 0.5s ease-in-out;
 }
 
 .slide {
-    width: 25%;
+    width: 25%; /* Cada slide ocupa el 25% del 400% (100% visible) */
     height: 100%;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff; /*  #ffffff (blanco)*/
 }
 
 .slide img {
@@ -236,20 +231,37 @@ main {
     color: #8e24aa;
 }
 
-/* RESPONSIVE PARA TABLETS Y CELULARES */
+/* --- REGISTRO DE RESPONSIVE PARA DISPOSITIVOS MÓVILES --- */
 @media (max-width: 768px) {
+    /* 1. Modificar la grilla para que quede en 1 sola columna */
     #portada {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
+    /* 2. Ajustar la altura del carrusel para móviles */
     .carrusel-container {
-        height: 300px;
+        height: 250px; /* Se reduce de 450px a 250px para encajar en pantallas chicas */
     }
-}
 
-@media (min-width:768px){
-    header {
-    background-color: chartreuse;    
+    /* 3. Asegurar que la imagen dentro del carrusel ocupe todo el espacio correctamente */
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cambia a 'contain' si prefieres no recortar nada de la imagen */
+    }
+
+    /* 4. Ajustes en las tarjetas de los cursos para que se lean bien */
+    .curso-card {
+        padding: 12px 15px;
+    }
+
+    .curso-info h3 {
+        font-size: 1rem;
+    }
+
+    .curso-info p {
+        font-size: 0.8rem;
     }
 }
 /* --- ESTILOS DEL FOOTER --- */
